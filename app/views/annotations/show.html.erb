@@ -1,0 +1,13 @@
+<h1>
+	<%= @annotation.title %> <br/>
+</h1>
+
+<hr/>
+
+<h5>Título:<%= @annotation.title %></h5>
+<h5>Texto: <%= @annotation.body %></h5>
+<h5>Data: <%= @annotation.date %></h5>
+<h5>Prioridade: <%= @annotation.priority %></h5>
+
+<%= link_to('Voltar', annotations_path, class: 'btn btn-light') %>
+<%= link_to('Editar', edit_annotation_path, class: 'btn btn-light') %>

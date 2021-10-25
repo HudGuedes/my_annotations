@@ -1,0 +1,33 @@
+<div class="container">
+  <%= form_with model: @annotation do |form| %>
+    <div class="form-group mb-3">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "form-control", autofocus: true %>
+      <% @annotation.errors.full_messages_for(:title).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= form.label :body %>
+      <%= form.text_area :body, class: "form-control", autofocus: true %>
+      <% @annotation.errors.full_messages_for(:body).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= form.label :date %>
+      <%= form.date_field :date, class: "form-control", autofocus: true %>
+      <% @annotation.errors.full_messages_for(:date).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :priority %><br />
+    <%= select_tag(:priority, options_for_select([['Alto', 0], ['Médio', 1], ['Baixo', 2]]), { class: 'form-control' })%>
+  </div>
+    <%= form.submit "Anotar", class: "btn btn-light" %>
+  <% end %>
+</div>

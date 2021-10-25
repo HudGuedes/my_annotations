@@ -1,0 +1,45 @@
+<h3 class="text-center">Suas anotações</h3>
+<%= link_to('Criar anotação', new_annotation_path, class: 'btn btn-primary float-end') %>
+<hr/>
+
+<% if @annotations.nil? %>
+	<div class="alert alert-info">
+		Nenhum pokemon adicionado
+	</div>
+<% else %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Título:</th>
+				<th>Texto:</th>
+				<th>Data:</th>
+				<th>Prioridade:</th>
+				<th>#</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @annotations.each do |annotation| %>
+				<tr>
+					<td><%= annotation.title %></td>
+					<td><%= annotation.body %></td>
+					<td><%= annotation.date %></td>
+					<td><%= annotation.priority %></td>
+					<td>
+						<div class="dropdown">
+          		<span class="navbar-text">
+					    	<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+											    Opções
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							    <li><%= link_to('Editar', edit_annotation_path(annotation.id), class: 'dropdown-item') %></li>
+							    <li><hr class="dropdown-divider"></li>
+							    <li><%= link_to('Deletar', annotation_path(annotation.id), method: :delete, class: 'dropdown-item', data: {confirm: 'Tem certeza?'}) %></li>
+							  </ul>
+							</span>
+						</div>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
