@@ -15,3 +15,7 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+import 'css/app'
+import 'jquery/src/jquery'
+import '@popperjs/core'
+import 'bootstrap'

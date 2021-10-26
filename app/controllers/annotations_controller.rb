@@ -3,7 +3,7 @@ class AnnotationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @annotations = Annotation.all
+    @annotations = Annotation.all.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -17,7 +17,7 @@ class AnnotationsController < ApplicationController
   def create
     @annotation = Annotation.new(annotation_params)
     if @annotation.save
-      redirect_to root_path
+      redirect_to root_path, notice: 'Anotação criada com sucesso!'
     else
       redirect_to :new
     end
@@ -39,7 +39,7 @@ class AnnotationsController < ApplicationController
   def destroy
     @annotation = Annotation.find(params[:id])
     @annotation.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: 'Anotação deletado com sucesso!'
   end
 
   private

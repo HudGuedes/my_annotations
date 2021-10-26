@@ -1,10 +1,25 @@
 <h3 class="text-center">Suas anotações</h3>
-<%= link_to('Criar anotação', new_annotation_path, class: 'btn btn-primary float-end') %>
 <hr/>
+<%= link_to('Criar anotação', new_annotation_path, class: 'btn btn-light float-end') %>
+
+<br clear="all">
+<div class="card bg-light mt-2 mb-4">
+	<div class="card-body">
+		<h5>Filtro:</h5>
+		<%= form_with url: annotations_url, method: :get do |form| %>
+		  <div class="form-group mb-3">
+		    <%= form.label :annotation %>
+		    <%= form.text_field :by_annotation, value: params[:by_annotation], class: "form-control", autofocus: true %>
+		  </div>
+		  <%= form.submit 'Buscar', class: "btn btn-light" %>
+		<% end %>
+	</div>
+</div>
+
 
 <% if @annotations.nil? %>
 	<div class="alert alert-info">
-		Nenhum pokemon adicionado
+		Nenhuma anotação adicionada
 	</div>
 <% else %>
 	<table class="table">
@@ -18,22 +33,23 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @annotations.each do |annotation| %>
+			<% @annotations.order("created_at desc").each do |annotation| %>
 				<tr>
 					<td><%= annotation.title %></td>
 					<td><%= annotation.body %></td>
 					<td><%= annotation.date %></td>
-					<td><%= annotation.priority %></td>
+					<td><%= annotation.priority = 0 ? 'Alta' : 'Média'%></td>
 					<td>
 						<div class="dropdown">
-          		<span class="navbar-text">
-					    	<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          					<span class="navbar-text">
+					    	<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 											    Opções
 							  </button>
 							  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							    <li><%= link_to('Editar', edit_annotation_path(annotation.id), class: 'dropdown-item') %></li>
+							  	<li><%= link_to('Visualizar', annotation_path(annotation.id), class: 'dropdown-item') %></li>
+							    <li><%= link_to('Editar', edit_annotation_path(annotation.id), class: 'dropdown-item')%></li>
 							    <li><hr class="dropdown-divider"></li>
-							    <li><%= link_to('Deletar', annotation_path(annotation.id), method: :delete, class: 'dropdown-item', data: {confirm: 'Tem certeza?'}) %></li>
+							    <li><%= button_to('Deletar', annotation_path(annotation), method: :delete, class: 'dropdown-item', data: {confirm: 'Tem certeza?'}) %></li>
 							  </ul>
 							</span>
 						</div>
@@ -43,3 +59,6 @@
 		</tbody>
 	</table>
 <% end %>
+
+<%= will_paginate @products, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination page-item justify-content-center' %>
+

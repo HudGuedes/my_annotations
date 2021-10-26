@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_10_25_215745) do
     t.string "title"
     t.text "body"
     t.date "date"
-    t.string "priority"
+    t.integer "priority"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

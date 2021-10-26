@@ -4,7 +4,7 @@ class CreateAnnotations < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :body
       t.date :date
-      t.string :priority
+      t.integer :priority
 
       t.timestamps
     end
