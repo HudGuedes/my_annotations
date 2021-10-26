@@ -1,24 +1,24 @@
-# README
+<h3 class="text-center">Suas anotações</h3>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Projeto criado para você fazer suas anotações, atribuindo sua prioridade como alta, média e baixa.
 
-Things you may want to cover:
+<h1>Tecnologias utilizadas;</h1>
 
-* Ruby version
+- ruby 2.6.3
+- rails 6.0.4
 
-* System dependencies
+<h1>Modo de utilizar;</h1>
 
-* Configuration
+Clone o repositório para a sua máquina, copie e cole: git clone https://github.com/HudGuedes/my_annotations Após isso, entre na pasta onde você clonou o projeto e digite os comandos:
 
-* Database creation
+- yarn install
+- bundle install
+- rails db:create
+- rails db:migrate
+- rails s
 
-* Database initialization
+Acesse: http://localhost:3000/
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Efetue o cadastro e faça o login. Crie a sua primeira anotação clicando em "Criar anotação", preencha os campos e salve.
+Retornará para a tela inicial, mostrando suas anotações salvas. Você poderá também pesquisar no campo filtro, buscando por titulo ou pelo texto.
+Você também poderá visualizar, editar e apagar as anotações.

@@ -1,6 +1,5 @@
 <h3 class="text-center">Suas anotações</h3>
 <hr/>
-<%= link_to('Criar anotação', new_annotation_path, class: 'btn btn-light float-end') %>
 
 <br clear="all">
 <div class="card bg-light mt-2 mb-4">
@@ -16,6 +15,7 @@
 	</div>
 </div>
 
+<%= link_to('Criar anotação', new_annotation_path, class: 'btn btn-light float-end') %>
 
 <% if @annotations.nil? %>
 	<div class="alert alert-info">
