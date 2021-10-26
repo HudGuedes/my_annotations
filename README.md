@@ -1,4 +1,4 @@
-<h3 class="text-center">Suas anotações</h3>
+<h1 class="text-center">Suas anotações</h1>
 
 Projeto criado para você fazer suas anotações, atribuindo sua prioridade como alta, média e baixa.
 
