@@ -1,5 +1,5 @@
 class Annotation < ApplicationRecord
 
-  scope :by_annotation, -> (title) { where('title LIKE ?', "%#{title}") }
-  scope :by_body, -> (body) { where('body LIKE ?', "%#{body}") }
+  enum priority: { alto: 0, medio: 1, baixo: 2}
+  scope :like_value, -> (title) { where('title LIKE ? or body LIKE ?', "%#{title}%", "%#{title}%") }
 end

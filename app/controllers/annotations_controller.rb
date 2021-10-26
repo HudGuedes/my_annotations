@@ -3,7 +3,9 @@ class AnnotationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @annotations = Annotation.all.paginate(page: params[:page], per_page: 5)
+    annotations = Annotation.all
+    annotations = Annotation.like_value(params[:by_annotation]) if params[:by_annotation].present?
+    @annotations = annotations.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -15,7 +17,9 @@ class AnnotationsController < ApplicationController
   end
 
   def create
-    @annotation = Annotation.new(annotation_params)
+    ap = annotation_params
+    ap[:priority] = ap[:priority].to_i
+    @annotation = Annotation.new(ap)
     if @annotation.save
       redirect_to root_path, notice: 'Anotação criada com sucesso!'
     else
@@ -28,8 +32,10 @@ class AnnotationsController < ApplicationController
   end
 
   def update
+    ap = annotation_params
+    ap[:priority] = ap[:priority].to_i
     @annotation = Annotation.find(params[:id])
-    if @annotation.update(annotation_params)
+    if @annotation.update(ap)
       redirect_to root_path
     else
       redirect_to :edit

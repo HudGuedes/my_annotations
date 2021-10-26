@@ -24,10 +24,12 @@
       <% end %>
     </div>
 
-  <div class="form-group mb-3">
-    <%= form.label :priority %><br />
-    <%= select_tag(:priority, options_for_select([['Alto', 0], ['Médio', 1], ['Baixo', 2]]), { class: 'form-control' })%>
-  </div>
+    <div class="form-group mb-3">
+      <%= form.label :priority %><br />
+      <%= form.select(:priority, options_for_select([['Alto', 0], ['Medio', 1], ['Baixo', 2]]), { prompt: 'Selecione'}, 
+      { class: "form-control", autofocus: true })%>
+    </div>
+
     <%= form.submit "Anotar", class: "btn btn-light" %>
     <%= link_to('Voltar', annotations_path, class: 'btn btn-light') %>
   <% end %>
